@@ -1,5 +1,7 @@
 import { createContext, useEffect, useState, ReactNode } from "react";
 
+import { UsersInterface } from "../types/UsersInterface";
+
 interface IGlobalContext {
   token: string | null;
   user: UsersInterface | null;
@@ -24,7 +26,7 @@ const GlobalContextProvider = (props: GlobalContextProviderProps) => {
 
   useEffect(() => {
     props.setAuth(newUser);
-  }, [newUser]);
+  }, [newUser, props]);
 
   return (
     <GlobalContext.Provider

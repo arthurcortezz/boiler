@@ -1,8 +1,15 @@
-import { Box, Flex, Image, Input, Link, Text, useBoolean } from "@chakra-ui/react";
+import { Box, Flex, Image, Link, Text } from "@chakra-ui/react";
+
 import Layout from "../../components/Layout";
 import BasicInput from "../../components/BasicInput";
+import { useState } from "react";
+import BasicButton from "../../components/BasicButton";
 
 const ForgotPassword = () => {
+  const [mail, setMail] = useState(null);
+  const handleSendRecoverMail = () => {
+    // console.log("🚀 ~ ForgotPassword ~ mail:", mail);
+  };
   return (
     <Layout title="Inicio">
       <Box
@@ -18,8 +25,7 @@ const ForgotPassword = () => {
           <Image src="/logo.svg" alt="Vercel Logo" width={100} height={100} />
         </Flex>
         <Box w={"100%"}>
-          <BasicInput placeholder="Digite seu CPF" title="CPF*" />
-          <BasicInput placeholder="Digite sua senha" title="Senha*" password />
+          <BasicInput placeholder="Digite seu e-mail" title="E-mail *" setValue={setMail} />
           <Link href="/forgot-password">
             <Text
               mt={"16px"}
@@ -31,6 +37,14 @@ const ForgotPassword = () => {
               Esqueci minha senha
             </Text>
           </Link>
+          <BasicButton
+            type={"submit"}
+            bg={"blue.200"}
+            color={"white"}
+            title={"Enviar"}
+            borderColor={"blue.200"}
+            onClick={handleSendRecoverMail}
+          />
         </Box>
       </Box>
     </Layout>

@@ -17,4 +17,5 @@ class AuthenticationController extends Controller {
     }
   }
 }
-export default new AuthenticationController("authentication");
+const AuthenticationControllerInstance = new AuthenticationController("authentication");
+export default AuthenticationControllerInstance;

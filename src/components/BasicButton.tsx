@@ -5,14 +5,16 @@ interface Props {
   bg: string;
   title: string;
   color: string;
+  type?: "button" | "submit" | "reset";
   borderColor: string;
   onClick?: () => void;
 }
 
-const BasicButton = ({ w, title, color, bg, borderColor, onClick }: Props) => (
+const BasicButton = ({ w, title, color, bg, type, borderColor, onClick }: Props) => (
   <Button
     w={w}
     bg={bg}
+    type={type}
     border="1px"
     color={color}
     onClick={onClick}
