@@ -15,3 +15,11 @@ const Dashboard = () => {
   );
 };
 export default Dashboard;
+
+export async function getStaticProps() {
+  return {
+    props: {
+      protected: true,
+    },
+  };
+}

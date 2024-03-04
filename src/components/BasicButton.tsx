@@ -10,7 +10,14 @@ interface Props {
 }
 
 const BasicButton = ({ w, title, color, bg, borderColor, onClick }: Props) => (
-  <Button color={color} bg={bg} _hover={{ backgroundColor: bg }} border="1px" borderColor={borderColor} onClick={onClick} w={w}>
+  <Button
+    w={w}
+    bg={bg}
+    border="1px"
+    color={color}
+    onClick={onClick}
+    borderColor={borderColor}
+    _hover={{ backgroundColor: bg }}>
     {title}
   </Button>
 );

@@ -23,11 +23,23 @@ const users = [
 
 const userData = {
   columns: [
-    { name: "Nome", key: "name" },
-    { name: "ID", key: "id" },
-    { name: "E-mail", key: "email" },
+    {
+      name: "ID",
+      key: "id",
+    },
+    {
+      name: "Nome",
+      key: "name",
+    },
+    {
+      name: "E-mail",
+      key: "email",
+    },
   ],
-  rows: users.map((user) => ({ key: user.id.toString(), ...user })),
+  rows: users.map(user => ({
+    key: user.id.toString(),
+    ...user,
+  })),
 };
 const UsersList = () => (
   <AuthLayout title={"Usuários"}>
@@ -38,3 +50,11 @@ const UsersList = () => (
 );
 
 export default UsersList;
+
+export async function getStaticProps() {
+  return {
+    props: {
+      protected: true,
+    },
+  };
+}

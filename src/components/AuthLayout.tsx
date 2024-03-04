@@ -1,8 +1,8 @@
-import React, { ReactNode } from "react";
-import Head from "next/head";
-import { Box, Flex, Image, Text } from "@chakra-ui/react";
-import BasicButton from "./BasicButton";
 import { useRouter } from "next/router";
+import React, { ReactNode } from "react";
+import { Box, Flex, Text } from "@chakra-ui/react";
+
+import BasicButton from "./BasicButton";
 
 type Props = {
   title: string;
@@ -29,7 +29,13 @@ const AuthLayout = ({ children, title }: Props) => {
     <Flex minH="100vh" w={"100%"}>
       <Box bg={"blue.200"} w={"100%"} maxW={"220px"}>
         {title && (
-          <Text textAlign={"center"} color={"white"} fontSize={"22px"} fontWeight={700} mb={20} pt={8}>
+          <Text
+            pt={8}
+            mb={20}
+            color={"white"}
+            fontWeight={700}
+            fontSize={"22px"}
+            textAlign={"center"}>
             {title}
           </Text>
         )}
@@ -38,11 +44,11 @@ const AuthLayout = ({ children, title }: Props) => {
             <BasicButton
               key={index}
               w={"100%"}
-              onClick={() => handleRedirect(menu.route)}
-              title={menu.title}
               color="white"
               bg="blue.400"
+              title={menu.title}
               borderColor="blue.200"
+              onClick={() => handleRedirect(menu.route)}
             />
           );
         })}

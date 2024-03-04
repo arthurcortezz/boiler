@@ -13,19 +13,19 @@ const TableColumn = ({ title, data }: Props) => {
   const [isAllChecked, setIsAllChecked] = useState(false);
   const handleCheckboxChange = (id: number, isChecked: boolean) => {
     if (isChecked) {
+      if (data.rows.length === checkedIds.length + 1) {
+        setIsAllChecked(true);
+      }
       setCheckedIds([...checkedIds, id]);
     } else {
-      setCheckedIds(checkedIds.filter((checkedId) => checkedId !== id));
-    }
-    const allIds = data.rows.map((row) => row.id);
-    if (allIds.length === checkedIds.length + 1) {
-      setIsAllChecked(true);
+      setIsAllChecked(false);
+      setCheckedIds(checkedIds.filter(checkedId => checkedId !== id));
     }
   };
   const handleAllCheckedChange = (isChecked: boolean) => {
     if (isChecked) {
       setIsAllChecked(true);
-      setCheckedIds(data.rows.map((row) => row.id));
+      setCheckedIds(data.rows.map(row => row.id));
     } else {
       setCheckedIds([]);
       setIsAllChecked(false);
@@ -42,9 +42,13 @@ const TableColumn = ({ title, data }: Props) => {
         <Thead>
           <Tr>
             <Th w={1} px={0}>
-              <Checkbox w={1} isChecked={isAllChecked} onChange={(e) => handleAllCheckedChange(e.target.checked)}></Checkbox>
+              <Checkbox
+                size={"lg"}
+                w={1}
+                isChecked={isAllChecked}
+                onChange={e => handleAllCheckedChange(e.target.checked)}></Checkbox>
             </Th>
-            {columns.map((column) => (
+            {columns.map(column => (
               <Th w={`${100 / columns.length}%`} pl={10} pr={0} key={column.key}>
                 {column.name}
               </Th>
@@ -52,17 +56,16 @@ const TableColumn = ({ title, data }: Props) => {
           </Tr>
         </Thead>
         <Tbody>
-          {rows.map((row) => (
+          {rows.map(row => (
             <Tr key={row.key}>
               <Td w={1} px={0}>
                 <Checkbox
+                  size={"lg"}
                   isChecked={checkedIds.includes(row.id)}
-                  w={1}
                   value={row.id}
-                  onChange={(e) => handleCheckboxChange(row.id, e.target.checked)}
-                ></Checkbox>
+                  onChange={e => handleCheckboxChange(row.id, e.target.checked)}></Checkbox>
               </Td>
-              {columns.map((column) => (
+              {columns.map(column => (
                 <Td pl={10} pr={0} key={`${row.key}-${column.key}`}>
                   {row[column.key]}
                 </Td>
